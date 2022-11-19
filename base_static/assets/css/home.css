@@ -1,0 +1,93 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.recipe-lists {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 4rem;
+    margin: 0 auto;
+}
+
+.recipe {
+    background-color: #fff;
+    border-radius: 40px 0 40px 0;
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    cursor: pointer;
+    transition: all 300ms;
+    max-width: 500px;
+    margin: 0 auto;
+    height: fit-content;
+}
+
+.recipe:hover {
+    transform: scale(1.05);
+}
+  
+.recipe:active {
+    transform: scale(0.95) rotateZ(1.7deg);
+}
+
+.recipe-content {
+    padding: 1rem;
+    border-radius: 0 0 40px 0;
+}
+
+.recipe img {
+    width: 100%;
+    border-radius: 40px 0 0 0;
+}
+
+
+.recipe-description {
+    margin: .5rem 0;
+}
+
+.recipe small {
+    color: gray;  
+}
+.recipe span {
+    padding: .2rem .5rem;
+    background-color: rgba(223, 182, 120, 0.589);
+    border-radius: 50px;
+    border: 1px solid burlywood;
+    font-size: .875rem;
+}
+
+.fa-calendar {
+    margin-left: .5rem;
+    margin-right: .2rem;
+}
+
+.recipe h2 {
+    color: var(--color-primary-dark);
+}
+
+.recipe-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+#category {
+    display: flex;
+    place-self: end;
+}
+
+.fa-bowl-rice, .fa-clock {
+    color: tomato;
+    margin-right: .2rem;
+}
+
+li p {
+    white-space: nowrap;
+    display: inline;
+}
+
+.btn-seeMore {
+    width: 100%;
+    border-radius: 0 0 40px 0;
+    border: none;
+}

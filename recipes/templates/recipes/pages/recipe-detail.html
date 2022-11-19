@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    {% include 'recipes/partials/head.html' with cssfile=cssfile %}
+    <link rel="stylesheet" href="{% static 'assets/css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/recipe-detail.css' %}">
+</head>
+
+<body>
+    {% include 'recipes/partials/header.html' %}
+    <main class="container-detail">
+        <div class="recipe-detail">
+            <span id="category">☕ Café da manhã</span>
+            <h1>Bolo de laranja com alecrim vegano</h1>
+            <h4><i class="fa-regular fa-user"></i>Ellen Maria <i class="fa-regular fa-calendar"></i> 10/11/2022 ás 11:20</h4>
+            <img src="https://post.healthline.com/wp-content/uploads/2020/09/vegetarian-diet-plan-732x549-thumbnail.jpg" alt="#">
+            <h2>Descrição</h2>
+            <p class="recipe-detail-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum at ad possimus sit atque earum porro molestias quos a hic?</p>
+            <hr>
+            <h2>Ingredientes</h2>
+            <p class="recipe-detail-ingredients">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum at ad possimus sit atque earum porro molestias quos a hic?</p>
+            <hr>
+            <h2>Modo de Preparo</h2>
+            <p class="recipe-preparation-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum at ad possimus sit atque earum porro molestias quos a hic? Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia odio labore sunt quas aperiam dolorem ipsam laborum distinctio autem fugiat quis ex cum, placeat ullam molestiae quam. Ipsam, hic animi.</p>
+            <ul class="recipe-detail-preparation">
+                <li><strong><i class="fa-regular fa-clock"></i> Preparo</strong>
+                    <p><em>0 minutos</em></p>
+                </li>
+                <hr>
+                <li><i class="fa-solid fa-bowl-rice"></i> <strong>Porções</strong>
+                    <p><em>0 porções</em></p>
+                </li>
+            </ul>
+        </div>
+    </main>
+    {% include 'recipes/partials/footer.html' %}
+</body>
+
+</html>
