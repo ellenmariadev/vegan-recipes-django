@@ -3,7 +3,7 @@
 <html lang="pt-BR">
 
 <head>
-    {% include 'recipes/partials/head.html' with cssfile=cssfile %}
+    {% include 'recipes/partials/head.html' with title=recipe.title %}
     <link rel="stylesheet" href="{% static 'assets/css/header.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/recipe-detail.css' %}">
 </head>
@@ -12,25 +12,26 @@
     {% include 'recipes/partials/header.html' %}
     <main class="container-detail">
         <div class="recipe-detail">
-            <span id="category">☕ Café da manhã</span>
-            <h1>Bolo de laranja com alecrim vegano</h1>
-            <h4><i class="fa-regular fa-user"></i>Ellen Maria <i class="fa-regular fa-calendar"></i> 10/11/2022 ás 11:20</h4>
-            <img src="https://post.healthline.com/wp-content/uploads/2020/09/vegetarian-diet-plan-732x549-thumbnail.jpg" alt="#">
+            <span id="category">☕ {{recipe.category.name }}</span>
+            <h1>{{recipe.title}}</h1>
+            <h4><i class="fa-regular fa-user"></i> {{recipe.author}} <i class="fa-regular fa-calendar"></i>{{recipe.created_at|date:"d/m/Y"}} às {{ recipe.created_at|date:"H:i" }}</h4>
+            <img src="{{ recipe.cover.url }}" alt="{{ recipe.title }}">
             <h2>Descrição</h2>
-            <p class="recipe-detail-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum at ad possimus sit atque earum porro molestias quos a hic?</p>
-            <hr>
-            <h2>Ingredientes</h2>
-            <p class="recipe-detail-ingredients">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum at ad possimus sit atque earum porro molestias quos a hic?</p>
+            <p class="recipe-detail-description">{{recipe.description}}</p>
             <hr>
             <h2>Modo de Preparo</h2>
-            <p class="recipe-preparation-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum at ad possimus sit atque earum porro molestias quos a hic? Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia odio labore sunt quas aperiam dolorem ipsam laborum distinctio autem fugiat quis ex cum, placeat ullam molestiae quam. Ipsam, hic animi.</p>
+            <p class="recipe-preparation-description">{% if recipe.preparation_steps_is_html is True %}
+                {{ recipe.preparation_steps|safe }}
+            {% else %}
+                {{ recipe.preparation_steps|linebreaksbr }}
+            {% endif %}</p>
             <ul class="recipe-detail-preparation">
                 <li><strong><i class="fa-regular fa-clock"></i> Preparo</strong>
-                    <p><em>0 minutos</em></p>
+                    <p><em>{{recipe.preparation_time}} {{recipe.preparation_time_unit}}</em></p>
                 </li>
                 <hr>
                 <li><i class="fa-solid fa-bowl-rice"></i> <strong>Porções</strong>
-                    <p><em>0 porções</em></p>
+                    <p><em>{{recipe.servings}} {{recipe.servings_unit}}</em></p>
                 </li>
             </ul>
         </div>

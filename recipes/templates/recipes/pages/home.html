@@ -12,14 +12,17 @@
     {% include 'recipes/partials/header.html' %}
 
     <main class="container">
+        {% if recipes %} 
         <div class="recipe-lists">
-            <a href="{% url 'recipe' 3 %}">
+            {% for recipe in recipes %}
             {% include 'recipes/partials/recipe.html' %}
-            </a>
-        {% comment %} {% include 'recipes/partials/recipe.html' %}
-        {% include 'recipes/partials/recipe.html' %}
-        {% include 'recipes/partials/recipe.html' %} {% endcomment %}
+            {% endfor %}
         </div>
+        {% else %}
+        <div class="published-false">
+            <p>Nenhuma receita publicada 😥</p>
+        </div>
+        {%endif%}
     </main>
     {% include 'recipes/partials/footer.html' %}
 </body>

@@ -1,19 +1,39 @@
 <div class="recipe">
-    <img src="https://post.healthline.com/wp-content/uploads/2020/09/vegetarian-diet-plan-732x549-thumbnail.jpg" alt="#">
+    <a href="{% url 'recipe' recipe.id %}">
+        <img src="{{recipe.cover.url}}" alt="{{recipe.title}}">
+    </a>
     <div class="recipe-content">
-        <h2>Bolo de laranja com alecrim vegano</h2>
-        <small><i class="fa-regular fa-user"></i>Ellen Maria <i class="fa-regular fa-calendar"></i> 10/11/2022 ás 11:20</small>
-        <p class="recipe-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum at ad possimus sit atque earum porro molestias quos a hic?</p>
+        <h2>{{recipe.title}}</h2>
+        <small><i class="fa-regular fa-user"></i>{{recipe.author}} <i class="fa-regular fa-calendar"></i>{{recipe.created_at}}</small>
+        <p class="recipe-description">{{recipe.description}}</p>
         <div class="recipe-info">
             <ul class="recipe-preparation">
                 <li><strong><i class="fa-regular fa-clock"></i> Preparo</strong>
-                    <p><em>0 minutos</em></p>
+                    <p><em>{{recipe.preparation_time}} {{recipe.preparation_time_unit}}</em></p>
                 </li>
                 <li><i class="fa-solid fa-bowl-rice"></i> <strong>Porções</strong>
-                    <p><em>0 porções</em></p>
+                    <p><em>{{recipe.servings}} {{recipe.servings_unit}}</em></p>
                 </li>
             </ul>
-            <span id="category">☕ Café da manhã</span>
+            {% if recipe.category is not None%}
+            <a id="category" href="{% url 'categories' recipe.category.id %}">
+                {% if recipe.category.name == 'Doces' %}
+                <span>🧁 {{recipe.category}}</span>
+                {% endif %}
+                {% if recipe.category.name == 'Almoço' %}
+                <span>🥗 {{recipe.category}}</span>
+                {% endif %}
+                {% if recipe.category.name == 'Café da manhã' %}
+                <span>☕ {{recipe.category}}</span>
+                {% endif %}
+                {% if recipe.category.name == 'Janta' %}
+                <span>🥘 {{recipe.category}}</span>
+                {% endif %}
+                {% if recipe.category.name == 'Snacks' %}
+                <span>🥪 {{recipe.category}}</span>
+                {% endif %}
+            </a>
+            {% endif %}
         </div>
     </div>
 </div>

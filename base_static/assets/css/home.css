@@ -1,12 +1,7 @@
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
 
 .recipe-lists {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
     gap: 4rem;
     margin: 0 auto;
 }
@@ -15,7 +10,6 @@ body {
     background-color: #fff;
     border-radius: 40px 0 40px 0;
     box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
-    cursor: pointer;
     transition: all 300ms;
     max-width: 500px;
     margin: 0 auto;
@@ -38,6 +32,7 @@ body {
 .recipe img {
     width: 100%;
     border-radius: 40px 0 0 0;
+    cursor: pointer;
 }
 
 
@@ -54,6 +49,7 @@ body {
     border-radius: 50px;
     border: 1px solid burlywood;
     font-size: .875rem;
+    cursor: pointer;
 }
 
 .fa-calendar {
@@ -90,4 +86,11 @@ li p {
     width: 100%;
     border-radius: 0 0 40px 0;
     border: none;
+}
+
+.published-false p {
+    text-align: center;
+    color: gray;
+    font-weight: 300;
+    font-size: 1.3rem;
 }
