@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    {% include 'recipes/partials/head.html' with title=title %}
+    <link rel="stylesheet" href="{% static 'assets/css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/home.css' %}">
+</head>
+
+<body>
+    {% include 'recipes/partials/header.html' %}
+
+    <main class="container">
+        {% if recipes %} 
+        <div class="recipe-lists">
+            {% for recipe in recipes %}
+            {% include 'recipes/partials/recipe.html' %}
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="published-false">
+            <p>Nenhuma receita publicada 😥</p>
+        </div>
+        {%endif%}
+    </main>
+    {% include 'recipes/partials/footer.html' %}
+</body>
+
+</html>
