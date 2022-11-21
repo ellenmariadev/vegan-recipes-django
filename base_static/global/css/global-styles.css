@@ -70,3 +70,33 @@ a {
     padding: 1rem;
     margin: 0 auto;
 }
+
+/* PAGINATION */
+
+
+.pagination-content {
+    display: flex;
+    place-content: center;
+    margin-top: 2rem;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.page-item {
+    padding: 5px 10px;
+    background-color: var(--color-gray-2);
+    border-radius: 3px;
+    color: var(--color-primary-dark);
+}
+
+.page-item:hover, .page-current {
+    background-color: tomato;
+    color: var(--color-primary-light);
+}
+
+.page-out-range {
+    color: var(--color-dark-text);
+    background-color: var(--color-gray-3);
+    margin: 0 .5rem;
+}
+
