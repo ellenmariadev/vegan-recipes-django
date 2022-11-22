@@ -1,7 +1,7 @@
 @import url('../../global/css/global-styles.css');
 
 .header {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .nav-home {
@@ -92,7 +92,7 @@
    
    @media (max-width: 480px) {
     .logo {
-        display: none;
+       display: none;
     }
     .group {
         width: 100%;

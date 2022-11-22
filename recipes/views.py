@@ -1,3 +1,5 @@
+import os
+
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import get_list_or_404, get_object_or_404, render
@@ -8,7 +10,7 @@ from .models import Recipe
 
 # Create your views here.
 
-PER_PAGES = 3
+PER_PAGE = int(os.environ.get('PER_PAGE', 6))
 
 
 def home(request):
@@ -16,7 +18,7 @@ def home(request):
         is_published=True
     ).order_by('-id')
 
-    page_obj, pagination_range = make_pagination(request, recipes, PER_PAGES)
+    page_obj, pagination_range = make_pagination(request, recipes, PER_PAGE)
 
     return render(request, 'recipes/pages/home.html', context={
         'title': 'Receitas',
@@ -39,7 +41,7 @@ def recipe_category(request, id):
     recipes = get_list_or_404(Recipe.objects.filter(
         category__id=id, is_published=True).order_by('-id'))
 
-    page_obj, pagination_range = make_pagination(request, recipes, PER_PAGES)
+    page_obj, pagination_range = make_pagination(request, recipes, PER_PAGE)
 
     return render(request, 'recipes/pages/home.html', context={
         'recipes': page_obj,
@@ -48,6 +50,7 @@ def recipe_category(request, id):
 
 
 def search(request):
+
     search_term = request.GET.get('q', '').strip()
 
     if not search_term:
@@ -61,7 +64,7 @@ def search(request):
         is_published=True
     ).order_by('-id')
 
-    page_obj, pagination_range = make_pagination(request, recipes, PER_PAGES)
+    page_obj, pagination_range = make_pagination(request, recipes, PER_PAGE)
 
     return render(request, 'recipes/pages/search.html', context={
         'search_term': search_term,
