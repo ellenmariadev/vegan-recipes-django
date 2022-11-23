@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    {% include 'recipes/partials/head.html' %}
+    <link rel="stylesheet" href="{% static 'assets/css/register-login.css' %}">
+</head>
+
+
+<body>
+    <main class="container register-login">
+        <h1>Cadastre-se</h1>
+        {% comment %} <div class="form">
+            <input class="input" placeholder="Nome" required="" type="text">
+            <span class="input-border"></span>
+        </div>
+        <div class="form">
+            <input class="input" placeholder="Sobrenome" required="" type="text">
+            <span class="input-border"></span>
+        </div> {% endcomment %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{field.id_for_label}}">{{field.label}}</label>
+                {{field}}
+
+                {% if field.help_text %}
+                <p class="help-text">{{field.help_text}}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <div class="form-group">
+                <button type="submit">Enviar</button>
+            </div>
+        </form>
+        {{field.errors}}
+    </main>
+    {% include 'recipes/partials/footer.html' %}
+</body>
+
+</html>
