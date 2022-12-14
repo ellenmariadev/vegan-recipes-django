@@ -4,6 +4,7 @@
 
 <head>
     {% include 'recipes/partials/head.html' %}
+    <title>RVegan</title>
     <link rel="stylesheet" href="{% static 'assets/css/header.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/home.css' %}">
 </head>
@@ -12,8 +13,8 @@
     {% include 'recipes/partials/header.html' %}
 
     <main class="container">
-       {% include 'recipes/partials/messages.html' %}
-        {% if recipes %} 
+        {% include 'recipes/partials/messages.html' %}
+        {% if recipes %}
         <div class="recipe-lists">
             {% for recipe in recipes %}
             {% include 'recipes/partials/recipe.html' %}

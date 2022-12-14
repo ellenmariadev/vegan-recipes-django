@@ -4,6 +4,7 @@
 
 <head>
     {% include 'recipes/partials/head.html' with title=recipe.title %}
+    <title>{{recipe.title}}</title>
     <link rel="stylesheet" href="{% static 'assets/css/header.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/recipe-detail.css' %}">
 </head>
@@ -22,9 +23,9 @@
             <h2>Modo de Preparo</h2>
             <p class="recipe-preparation-description">{% if recipe.preparation_steps_is_html is True %}
                 {{ recipe.preparation_steps|safe }}
-            {% else %}
+                {% else %}
                 {{ recipe.preparation_steps|linebreaksbr }}
-            {% endif %}</p>
+                {% endif %}</p>
             <ul class="recipe-detail-preparation">
                 <li><strong><i class="fa-regular fa-clock"></i> Preparo</strong>
                     <p><em>{{recipe.preparation_time}} {{recipe.preparation_time_unit}}</em></p>
