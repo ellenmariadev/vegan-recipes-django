@@ -10,10 +10,17 @@
 
 
 <body>
-    <main class="container register-login">
-        <h1>Cadastre-se</h1>
+    <section class="intro">
+        <h1>Encontre ótimas receitas e <strong>compartilhe as suas</strong> para o mundo inteiro!</h1>
+        <h2 class="subtitle">Faça parte da nossa comunidade</h2>
+        <p class="top-text">Temos <span class="count-recipes">{{recipes.count}}</span> receitas veganas</p>
+    </section>
+    <main class="register-login">
         {% include 'recipes/partials/messages.html' %}
-        <form action="{% url 'create' %}" method="POST">
+        <h1 class="logo"><a href="/">RVEGAN <i class="fa-solid fa-leaf"></i></a></h1>
+        <h1 class="title">Faça seu cadastro</h1>
+        <small>Já possui uma conta? <a href="{% url 'authors:login' %}">Login</a></small>
+        <form action="{% url 'authors:register_create' %}" method="POST">
             {% csrf_token %}
             {% for field in form %}
             <div class="form">
@@ -29,7 +36,6 @@
             <button class="btn btn-primary" type="submit">Enviar</button>
         </form>
     </main>
-    {% include 'recipes/partials/footer.html' %}
 </body>
 
 </html>

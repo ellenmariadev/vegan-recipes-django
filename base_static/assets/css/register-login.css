@@ -1,37 +1,154 @@
 @import url("../../global/css/global-styles.css");
 
-.register-login h1 {
+body {
   text-align: center;
-  font-size: 3rem;
+  background-color: var(--color-primary-dark);
 }
 
-.register-login {
+main {
+  color: var(--color-gray-1);
+}
+
+.login {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.logo {
+  font-family: 'Alegreya', serif;
+  font-size: 1.8rem;
+}
+
+.logo a {
+  color: tomato;
+}
+
+.fa-leaf {
+  color: var(--color-gray-1);
+}
+
+.intro {
+  background-size: cover;
+  background-image: url(../img/bg-register.jpg);
+  background-color: #2a2929;
+  background-position: center;
+  padding: 0 1em 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-blend-mode: overlay;
+  gap: 2em;
+}
+
+.register-login,
+.login {
+  padding: 2em 1em;
+}
+
+.intro>*,
+.register-login>*,
+.login>* {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* TEXT STYLE */
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.intro h1 {
+  color: var(--color-gray-1);
+  font-weight: 400;
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.3125rem;
+}
+
+.subtitle {
+  text-transform: uppercase;
+  color: tomato;
+  font-weight: 900;
+}
+
+.top-text {
+  color: var(--color-gray-1);
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-size: 0.625rem;
+  order: -1;
+  border-top: solid 0.3em #ff6347;
+  border-image: linear-gradient(to left, #ff6347, #ff6347) 1;
+  width: fit-content;
+  place-self: center;
+  padding-top: 0.3em;
+  text-transform: uppercase;
+}
+
+.count-recipes {
+  font-size: .875rem;
+}
+
+small a {
+  color: tomato;
+}
+
+.forget-password {
+  font-size: .875rem;
+  margin-top: .6em;
+  place-self: end;
+}
+
+.error {
+  text-align: center;
+  font-size: .875rem;
+  margin-top: .5em;
+}
+
+.logout-options {
+  display: flex;
+  gap: 1em;
+  place-content: center;
+}
+
+/* FORM STYLE */
+
+form {
+  max-width: 500px;
+  width: 100%;
   display: grid;
-  gap: 4em;
 }
 
 .form {
-  --width-of-input: 500px;
   --border-height: 1px;
-  --border-before-color: var(--color-gray-4);
-  --border-after-color: var(--color-primary-dark);
+  --border-before-color: var(--color-gray-5);
+  --border-after-color: tomato;
   --input-hovered-color: #4985e01f;
+  display: grid;
   position: relative;
-  width: var(--width-of-input);
 }
+
 /* styling of Input */
 .form input {
-  color: var(--color-gray-6);
+  color: var(--color-gray-1);
   font-size: 0.9rem;
   background-color: transparent;
-  width: 100%;
-  box-sizing: border-box;
+  max-width: 100%;
   padding-inline: 0.5em;
   padding-block: 0.7em;
   border: none;
   border-bottom: var(--border-height) solid var(--border-before-color);
   margin-top: 1em;
 }
+
 /* styling of animated border */
 .input-border {
   position: absolute;
@@ -42,6 +159,11 @@
   left: 0;
   transition: 0.3s;
 }
+
+input::placeholder {
+  color: var(--color-gray-3);
+}
+
 /* Hover on Input */
 input:hover {
   background: var(--input-hovered-color);
@@ -50,17 +172,53 @@ input:hover {
 input:focus {
   outline: none;
 }
+
 /* here is code of animated border */
-input:focus ~ .input-border {
+input:focus~.input-border {
   width: 100%;
 }
-/* === if you want to do animated border on typing === */
-/* remove input:focus code and uncomment below code */
-/* input:valid ~ .input-border{
-     width: 100%;
-   } */
 
 .btn {
-  justify-self: end;
-  margin-top: 1em;
+  margin-top: 1.5em;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  font-weight: 900;
+}
+
+@media (min-width: 600px) {
+  body {
+    display: flex;
+    font-size: 1.125rem;
+  }
+
+  .intro,
+  .register-login,
+  .login {
+    width: 50%;
+    min-height: 100vh;
+  }
+
+  .intro {
+    gap: 0;
+  }
+
+  .intro h1 {
+    font-size: 3rem;
+  }
+
+  .register-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
 }

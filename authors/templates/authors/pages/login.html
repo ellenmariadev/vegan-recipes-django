@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    {% include 'recipes/partials/head.html' %}
+    <title>Login | RVegan</title>
+    <link rel="stylesheet" href="{% static 'assets/css/register-login.css' %}">
+</head>
+
+
+<body>
+    <main class="container login">
+        {% include 'recipes/partials/messages.html' %}
+        <h1 class="logo"><a href="/">RVEGAN <i class="fa-solid fa-leaf"></i></a></h1>
+        {% if request.user.is_authenticated %}
+        <p>Você está conectado como <strong>{{ request.user.username }}</strong>.</p>
+        <p>Tem certeza que deseja sair?</p>
+        <form action="{% url 'authors:logout' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="username" value="{{request.user.username}}">
+            <div class="logout-options">
+                <a class="btn btn-secondary" href="/">Cancelar</a>
+                <button class="btn btn-primary" type="submit">Sair</button>
+            </div>
+        </form>
+        {% endif %}
+        {% if not request.user.is_authenticated %}
+        <h1 class="title">Login</h1>
+        <small>Não possui uma conta? <a href="{% url 'authors:register' %}">Registre-se</a></small>
+        <form action="{% url 'authors:login_create' %}" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form">
+                {{field}}
+                <span class="input-border"></span>
+            </div>
+            {% if form.errors %}
+            <div class="error">
+                {{field.errors}}
+            </div>
+            {% endif %}
+            {% endfor %}
+            <p class="forget-password"><a href="{% url 'authors:login' %}">Esqueceu a senha?</a></p>
+            <button class="btn btn-primary" type="submit">Enviar</button>
+        </form>
+        {% endif %}
+    </main>
+</body>
+
+</html>

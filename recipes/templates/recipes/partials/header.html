@@ -5,7 +5,7 @@
             {% include 'recipes/partials/search.html' %}
             <ul class="nav-home-links">
                 <li><a href="/"><i class="fa-regular fa-user"></i></a></li>
-                <li><a class="btn-dark" href="/">Sair</a></li>
+                <li><a class="btn-dark" href="{% url 'authors:logout' %}">Sair</a></li>
             </ul>
         </nav>
     </div>

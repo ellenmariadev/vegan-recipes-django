@@ -1,5 +1,6 @@
 import os
 
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import get_list_or_404, get_object_or_404, render
@@ -13,6 +14,7 @@ from .models import Recipe
 PER_PAGE = int(os.environ.get('PER_PAGE', 6))
 
 
+@login_required(login_url='authors:login', redirect_field_name='next')
 def home(request):
     recipes = Recipe.objects.filter(
         is_published=True
@@ -23,7 +25,7 @@ def home(request):
     return render(request, 'recipes/pages/home.html', context={
         'title': 'Receitas',
         'recipes': page_obj,
-        'pagination_range': pagination_range
+        'pagination_range': pagination_range,
     })
 
 

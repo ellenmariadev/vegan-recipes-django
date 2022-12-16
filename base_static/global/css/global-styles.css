@@ -14,7 +14,7 @@
   --color-success-dark: #5fa6579e;
   --color-alert-dark: #927f40;
   --color-warning-dark: #927f40;
-  --color-error-dark: #d83b3b7b;
+  --color-error-dark: #d43a42dc;
 
   --color-gray-0: #f9f9f9;
   --color-gray-1: #e0e0e0;
@@ -56,7 +56,7 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   font-family: var(--font-primary);
   background: var(--color-gray-1);
 }
@@ -75,18 +75,32 @@ a {
 
 .btn {
   border: none;
-  padding: 0.3em 1em;
+  padding: 0.3em 2em;
   border-radius: 5px;
   cursor: pointer;
+  font-family: inherit;
 }
 
 .btn-primary {
   color: var(--color-gray-1);
   background-color: tomato;
+  background: transparent linear-gradient(270deg, #fa7159c9 0%, tomato 100%) 0% 0% no-repeat padding-box;
+  transition: opacity 250ms;
+
 }
 
-.btn-primary:hover {
-  opacity: 0.7;
+.btn-secondary {
+  color: var(--color-dark-text);
+  background-color: var(--color-gray-5);
+  background: var(--color-gray-1);
+  transition: opacity 250ms;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  opacity: 0.6;
 }
 
 /* PAGINATION */
