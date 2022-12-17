@@ -28,7 +28,7 @@
         {% if not request.user.is_authenticated %}
         <h1 class="title">Login</h1>
         <small>Não possui uma conta? <a href="{% url 'authors:register' %}">Registre-se</a></small>
-        <form action="{% url 'authors:login_create' %}" method="POST">
+        <form class="main-form" action="{% url 'authors:login_create' %}" method="POST">
             {% csrf_token %}
             {% for field in form %}
             <div class="form">

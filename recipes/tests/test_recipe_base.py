@@ -2,13 +2,8 @@ from django.test import TestCase
 
 from recipes.models import Category, Recipe, User
 
-# Create your tests here.
 
-
-class RecipeTestBase(TestCase):
-    def setUp(self) -> None:
-        return super().setUp()
-
+class RecipeMixing:
     def make_category(self, name='Category'):
         return Category.objects.create(name=name)
 
@@ -65,3 +60,20 @@ class RecipeTestBase(TestCase):
             cover=cover,
             is_published=is_published,
         )
+
+    def make_recipe_in_batch(self, qtd=10):
+        recipes = []
+        for i in range(qtd):
+            kwargs = {
+                'title': f'Recipe Title {i}',
+                'author_data': {'username': f'u{i}'},
+                'slug': f'r{i}'
+            }
+            recipe = self.make_recipe(**kwargs)
+            recipes.append(recipe)
+        return recipes
+
+
+class RecipeTestBase(TestCase, RecipeMixing):
+    def setUp(self) -> None:
+        return super().setUp()

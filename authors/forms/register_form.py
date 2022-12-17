@@ -25,7 +25,8 @@ class RegisterForm(forms.ModelForm):
 
     email = forms.EmailField(
         label='E-mail',
-        error_messages={'required': 'Este campo é obrigatório.'}
+        error_messages={'required': 'Este campo é obrigatório.',
+                        'invalid': 'Informe um e-mail válido.'}
     )
 
     password = forms.CharField(

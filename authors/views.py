@@ -35,6 +35,7 @@ def register_create(request):
         user = form.save(commit=False)
         user.set_password(user.password)
         user.save()
+        messages.success(request, 'Conta criada com sucesso.')
         del (request.session['register_form_data'])
         return redirect(reverse('authors:login'))
     return redirect('authors:register')
@@ -66,16 +67,20 @@ def login_create(request):
     else:
         messages.error(request, 'Nome de usuário ou senha incorretos.')
 
+    messages.success(request, 'Login efetuado com sucesso.')
     return redirect(reverse('home'))
 
 
 @login_required(login_url='authors:login', redirect_field_name='next')
 def logout_view(request):
     if not request.POST:
+        messages.error(request, 'Erro ao sair da conta.')
         return redirect(reverse('authors:login'))
 
     if request.POST.get('username') != request.user.username:
+        messages.error(request, 'Erro ao sair da conta.')
         return redirect(reverse('authors:login'))
 
     logout(request)
+    messages.error(request, 'Conta desconectada.')
     return redirect(reverse('authors:login'))
