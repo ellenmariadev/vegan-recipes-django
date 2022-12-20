@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    {% include 'recipes/partials/head.html' %}
+    <title>Dashboard Receita | RVegan</title>
+    <link rel="stylesheet" href="{% static 'assets/css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}">
+</head>
+
+
+<body>
+    {% include 'recipes/partials/header.html' %}
+    <main class="container">
+        {% include 'recipes/partials/messages.html' %}
+        <div class="dashboard-edit-header">
+            <h1 class="dashboard-edit-title">⚙️ Editar Receita</h1>
+            <h2 class="dashboard-edit-recipe-title">{{recipe.title}}</h2>
+        </div>
+    </main>
+    <section class="container dashboard-edit">
+        <form class="dashboard-form-recipe" action="{% url 'authors:dashboard_recipe_edit' recipe.id %}" method="POST" enctype="multipart/form-data" class="dashboard-form-recipe">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="{{field.id_for_label}}">
+                <label for="{{field.id_for_label}}">{{field.label}}</label>
+                {{field}}
+                {% if field.name == 'cover' and field.value.url %}
+                <div>
+                    <img src="{{ field.value.url }}" alt="Capa para {{ recipe.title }}">
+                </div>
+                {% endif %}
+
+                {% if form.errors %}
+                <div class="error">
+                    {{field.errors}}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <div class="btn-actions">
+                <a href="{% url 'authors:dashboard' %}" class="btn btn-secondary" type="submit">Cancelar</a>
+                <button class="btn btn-primary" type="submit">Salvar Alterações</button>
+            </div>
+        </form>
+    </section>
+    {% include 'recipes/partials/footer.html' %}
+</body>
+
+</html>

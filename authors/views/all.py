@@ -5,9 +5,8 @@ from django.http import Http404
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
+from authors.forms import LoginForm, RegisterForm
 from recipes.models import Recipe
-
-from .forms import LoginForm, RegisterForm
 
 
 def register_view(request):
@@ -61,20 +60,19 @@ def login_create(request):
         )
 
         if authenticated_user is not None:
+            messages.success(request, 'Login efetuado com sucesso.')
             login(request, authenticated_user)
         else:
             messages.error(request, 'Credenciais Inválidas.')
     else:
         messages.error(request, 'Nome de usuário ou senha incorretos.')
 
-    messages.success(request, 'Login efetuado com sucesso.')
-    return redirect(reverse('home'))
+    return redirect(reverse('authors:dashboard'))
 
 
 @login_required(login_url='authors:login', redirect_field_name='next')
 def logout_view(request):
     if not request.POST:
-        messages.error(request, 'Erro ao sair da conta.')
         return redirect(reverse('authors:login'))
 
     if request.POST.get('username') != request.user.username:
@@ -82,5 +80,20 @@ def logout_view(request):
         return redirect(reverse('authors:login'))
 
     logout(request)
-    messages.error(request, 'Conta desconectada.')
     return redirect(reverse('authors:login'))
+
+
+@login_required(login_url='authors:login', redirect_field_name='next')
+def dashboard(request):
+    recipes = Recipe.objects.filter(
+        is_published=False,
+        author=request.user
+    ).order_by('-id')
+
+    return render(
+        request,
+        'authors/pages/dashboard.html',
+        context={
+            'recipes': recipes,
+        }
+    )

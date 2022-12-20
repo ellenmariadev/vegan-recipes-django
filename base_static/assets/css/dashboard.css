@@ -1,0 +1,164 @@
+h2 {
+    color: tomato;
+}
+
+.recipe-title {
+    color: var(--color-primary-dark);
+    font-weight: 900;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-header a {
+    text-align: center;
+}
+
+.dashboard-recipes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+.dashboard-recipe {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-recipe {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.recipe-date {
+    font-size: .875rem;
+}
+
+.recipe-id {
+    font-family: 'Consolas';
+    color: var(--color-gray-6);
+    background-color: var(--color-gray-2);
+    padding: 0 .2em;
+    border-radius: 4px;
+    font-size: .825rem;
+    margin-bottom: .2em;
+}
+
+.recipe-actions {
+    display: flex;
+    gap: 1em;
+    padding: 0 .2em;
+}
+
+.btn-action {
+    border: none;
+    cursor: pointer;
+    color: var(--color-gray-6);
+    background: transparent;
+    padding: .1em .2em;
+    border-radius: 4px;
+}
+
+.delete:hover {
+    color: rgb(149, 75, 75);
+    background-color: #ffa3a3aa;
+}
+
+.edit:hover {
+    color: #aa8439;
+    background-color: #ffaa004d;
+}
+
+/* RECIPE FORM */
+
+.dashboard-form-recipe {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+}
+
+.dashboard-edit-title,
+.dashboard-edit-recipe-title {
+    text-align: center;
+}
+
+.dashboard-form-recipe label {
+    display: block;
+    font-weight: 900;
+    font-size: .725rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-primary-dark);
+    margin-bottom: .2em;
+}
+
+.dashboard-form-recipe input,
+textarea,
+select {
+    display: inline;
+    width: 100%;
+    padding: .5em;
+    border: 2px solid rgba(64, 65, 67, 0.13);
+    border-radius: 4px;
+    background-color: rgba(142, 178, 190, 0.233);
+    outline: none;
+}
+
+select {
+    height: 41px;
+}
+
+.id_preparation_steps,
+.id_cover {
+    grid-column: span 2;
+}
+
+.dashboard-form-recipe input:focus-visible,
+textarea:focus-visible,
+select:focus-visible .dashboard-form-recipe input:active,
+textarea:active,
+select:active {
+    border-color: tomato;
+}
+
+.dashboard-form-recipe img {
+    max-width: 50%;
+    border-radius: 5px;
+    margin-top: 1em;
+
+}
+
+.btn-actions {
+    display: flex;
+    gap: 1em;
+    grid-column: span 2;
+    justify-self: end;
+
+    margin-top: 2em;
+}
+
+.btn-secondary {
+    background-color: var(--color-gray-2);
+}
+
+@media (max-width: 600px) {
+
+    .id_title,
+    .id_description {
+        grid-column: span 2;
+    }
+
+    .btn-actions {
+        justify-self: center
+    }
+
+    .dashboard-form-recipe img {
+        max-width: 100%;
+    }
+}

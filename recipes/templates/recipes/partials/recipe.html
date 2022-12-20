@@ -15,7 +15,7 @@
                     <p><em>{{recipe.servings}} {{recipe.servings_unit}}</em></p>
                 </li>
             </ul>
-            {% if recipe.category is not None%}
+            {% if recipe.category is not None %}
             <a id="category" href="{% url 'categories' recipe.category.id %}">
                 {% if recipe.category.name == 'Doces' %}
                 <span>🧁 {{recipe.category}}</span>

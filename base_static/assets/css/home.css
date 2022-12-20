@@ -93,10 +93,3 @@ li p {
     border-radius: 0 0 40px 0;
     border: none;
 }
-
-.published-false p {
-    text-align: center;
-    color: gray;
-    font-weight: 300;
-    font-size: 1.3rem;
-}

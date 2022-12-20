@@ -13,7 +13,7 @@ from .test_recipe_base import RecipeTestBase
 class RecipeHomeViewTest(RecipeTestBase):
     def test_recipe_home_view_function_is_correct(self):
         view = resolve(reverse('home'))
-        self.assertIs(view.func, views.home)
+        self.assertIs(view.func.view_class, views.RecipeListViewHome)
 
     def test_recipe_home_view_returns_status_code_200_ok(self):
         response = self.client.get(reverse('home'))
@@ -36,7 +36,7 @@ class RecipeHomeViewTest(RecipeTestBase):
 
     def test_recipe_home_template_shows_no_recipes_found_if_no_recipes(self):
         response = self.client.get(reverse('home'))
-        self.assertIn('<p>Nenhuma receita publicada 😥</p>',
+        self.assertIn('<p class="published-false">Nenhuma receita publicada 😥</p>',
                       response.content.decode('utf-8'))
 
     def test_recipe_home_template_dont_load_recipes_not_published(self):
@@ -46,7 +46,7 @@ class RecipeHomeViewTest(RecipeTestBase):
         response = self.client.get(reverse('home'))
 
         # Check if one recipe exists
-        self.assertIn('<p>Nenhuma receita publicada 😥</p>',
+        self.assertIn('<p class="published-false">Nenhuma receita publicada 😥</p>',
                       response.content.decode('utf-8'))
 
     @patch('recipes.views.PER_PAGE', new=3)

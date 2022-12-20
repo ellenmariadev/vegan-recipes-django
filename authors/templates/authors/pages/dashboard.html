@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    {% include 'recipes/partials/head.html' %}
+    <title>Dashboard [{{user}}] | RVegan</title>
+    <link rel="stylesheet" href="{% static 'assets/css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}">
+</head>
+
+
+<body>
+    {% include 'recipes/partials/header.html' %}
+    <main class="container">
+        {% include 'recipes/partials/messages.html' %}
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">⚙️ Painel <span class="dashboard-user">[{{user}}]</span> </h1>
+            <a href="{% url 'authors:dashboard_recipe_create' %}" class="btn btn-primary">+ Criar Receita</a>
+        </div>
+        <div class="dashboard-container">
+            <h2>Suas receitas ({{recipes.count}})</h2>
+            <ul class="dashboard-recipes-list">
+                {% for recipe in recipes %}
+                <li class="dashboard-recipe">
+                    <div class="card-recipe">
+                        <span class="recipe-id">#{{recipe.id}}</span>
+                        <h3 class="recipe-title">{{ recipe.title }}</h3>
+                        <p class="recipe-date">{{recipe.created_at}}</p>
+                    </div>
+                    <div class="recipe-actions">
+                        <a class="btn-action edit" href="{% url 'authors:dashboard_recipe_edit' recipe.id %}">📝 Editar</a>
+                        <form class="form-delete" action="{% url 'authors:dashboard_recipe_delete' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" value="{{recipe.id}}">
+                            <button class="btn-action delete" type="submit">🗑️ Excluir</button>
+                        </form>
+                    </div>
+                </li>
+                <hr>
+                {% empty %}
+                <li>
+                    <p class="published-false">Você não possui receitas 😢</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </main>
+    {% include 'recipes/partials/footer.html' %}
+
+    <script src="{% static 'global/js/script.js' %}"></script>
+</body>
+
+</html>

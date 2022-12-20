@@ -1,8 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
 
-# Create your tests here.
-
 
 class RecipeURLsTest(TestCase):
     def test_recipe_home_url_is_correct(self):
@@ -14,12 +12,9 @@ class RecipeURLsTest(TestCase):
         self.assertEqual(url, '/recipes/category/1/')
 
     def test_recipe_detail_url_is_correct(self):
-        url = reverse('recipe', kwargs={'id': 1})
+        url = reverse('recipe', kwargs={'pk': 1})
         self.assertEqual(url, '/recipe/1/')
 
     def test_recipe_search_url_is_correct(self):
         url = reverse('search')
         self.assertEqual(url, '/recipes/search/')
-
-
-# RED - GREEN - REFACTOR

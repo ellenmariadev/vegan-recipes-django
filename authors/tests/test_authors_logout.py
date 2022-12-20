@@ -14,7 +14,7 @@ class AuthorLogoutTest(TestCase):
         )
 
         self.assertIn(
-            'Erro ao sair da conta.',
+            'Tem certeza que deseja sair?',
             response.content.decode('utf-8')
         )
 
@@ -48,6 +48,6 @@ class AuthorLogoutTest(TestCase):
         )
 
         self.assertIn(
-            'Conta desconectada.',
+            'Não possui uma conta?',
             response.content.decode('utf-8')
         )
